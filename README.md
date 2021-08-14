@@ -7,4 +7,4 @@ A code-along repo for the frontend part of the course: [Django with React | An E
 Changed the following from the original course content:
 
 - Used TypeScript
-- Replace React-Bootstrap with Chakra-UI
+- Replaced React-Bootstrap with Chakra-UI
