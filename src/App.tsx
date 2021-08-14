@@ -1,8 +1,16 @@
+import { ChakraProvider } from '@chakra-ui/react';
+import Footer from './features/layout/Footer';
+import Header from './features/layout/Header';
+
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <Header />
+        <h1>App</h1>
+        <Footer />
+      </div>
+    </ChakraProvider>
   );
 }
 
