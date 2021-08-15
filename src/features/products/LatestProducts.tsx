@@ -1,6 +1,6 @@
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Heading, SimpleGrid } from '@chakra-ui/react';
 import products from '../../temp/products';
-import Product from './Product';
+import Product from './ProductCard';
 
 type HomeScreenProps = {};
 
@@ -27,4 +27,5 @@ const HomePage: React.FC<HomeScreenProps> = () => {
   );
 };
 
+// TODO: cache products
 export default HomePage;

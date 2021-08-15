@@ -7,6 +7,7 @@ import {
   IconButton,
   Link,
 } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 
 type ProductProps = {
@@ -23,13 +24,14 @@ const Product: React.FC<ProductProps> = (props) => {
   const { id, category, name, likes, price, sale_price, image_url } = props;
   return (
     <Link
+      as={ReactRouterLink}
+      to={`/product/${id}`}
       maxW="sm"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
       d="flex"
       flexDirection="column"
-      href={`/product/${id}`}
     >
       <Image src={image_url} alt={name} />
       <Flex p="6" flex="1" direction="column" justifyContent="space-between">
@@ -58,7 +60,7 @@ const Product: React.FC<ProductProps> = (props) => {
           >
             {name}
           </Heading>
-          <Flex>
+          <Flex alignItems="center">
             <IconButton icon={<FiHeart />} aria-label="like" size="sm" mr="1" />
             <Box as="span">{likes}</Box>
           </Flex>

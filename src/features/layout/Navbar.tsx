@@ -4,12 +4,13 @@ import {
   Collapse,
   Flex,
   IconButton,
+  Link,
   Stack,
-  Text,
   useBreakpointValue,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
@@ -49,13 +50,15 @@ const Navbar: React.FC<NavbarProps> = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
+          <Link
+            as={ReactRouterLink}
+            to="/"
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
           >
             Nayoun Kim
-          </Text>
+          </Link>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -69,15 +72,17 @@ const Navbar: React.FC<NavbarProps> = () => {
           spacing={6}
         >
           <Button
-            as={'a'}
+            as={ReactRouterLink}
+            to="/login"
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
-            href={'#'}
           >
             Sign In
           </Button>
           <Button
+            as={ReactRouterLink}
+            to="/signup"
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
