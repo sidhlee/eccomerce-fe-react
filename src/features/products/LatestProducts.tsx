@@ -15,10 +15,10 @@ const HomePage: React.FC<HomeScreenProps> = () => {
           <Product
             key={p.sync_product.id}
             id={p.sync_product.id.toString()}
-            category={p.sync_variants[0].product.name}
+            category={p.sync_variants[0].product?.name || ''}
             name={p.sync_product.name}
             likes={111}
-            price={p.sync_variants[0].retail_price}
+            price={p.sync_variants[0].retail_price || ''}
             image_url={p.sync_product.thumbnail_url}
           />
         ))}
