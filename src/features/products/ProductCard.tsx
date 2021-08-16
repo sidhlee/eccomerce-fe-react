@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
+import LikeButton from '../../components/LikeButton';
 
 type ProductProps = {
   id: string;
@@ -60,10 +61,7 @@ const Product: React.FC<ProductProps> = (props) => {
           >
             {name}
           </Heading>
-          <Flex alignItems="center">
-            <IconButton icon={<FiHeart />} aria-label="like" size="sm" mr="1" />
-            <Box as="span">{likes}</Box>
-          </Flex>
+          <LikeButton likes={likes} />
         </Flex>
 
         <Box justifySelf="end">
