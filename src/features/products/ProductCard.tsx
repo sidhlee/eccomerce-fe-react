@@ -1,14 +1,6 @@
-import {
-  Badge,
-  Box,
-  Flex,
-  Image,
-  Heading,
-  IconButton,
-  Link,
-} from '@chakra-ui/react';
+import { Badge, Box, Flex, Image, Heading, Link } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { FiHeart } from 'react-icons/fi';
+
 import LikeButton from '../../components/LikeButton';
 
 type ProductProps = {
@@ -23,6 +15,8 @@ type ProductProps = {
 
 const Product: React.FC<ProductProps> = (props) => {
   const { id, category, name, likes, price, sale_price, image_url } = props;
+  console.log(image_url);
+
   return (
     <Link
       as={ReactRouterLink}

@@ -1,0 +1,181 @@
+{
+  "sync_product": {
+    "id": 239664748,
+    "external_id": "611910aba8cdc9",
+    "name": "The Centaur",
+    "variants": 3,
+    "synced": 3,
+    "thumbnail_url": "https://files.cdn.printful.com/files/15e/15e76888e332529165566a6205a16cd1_preview.png",
+    "is_ignored": false
+  },
+  "sync_variants": [
+    {
+      "id": 2771226288,
+      "external_id": "611910aba8ceb4",
+      "sync_product_id": 239664748,
+      "name": "The Centaur - 3x3",
+      "synced": true,
+      "variant_id": 10163,
+      "warehouse_product_variant_id": null,
+      "retail_price": "4.00",
+      "sku": "611910ABA78AB_3x3",
+      "currency": "CAD",
+      "product": {
+        "variant_id": 10163,
+        "product_id": 358,
+        "image": "https://files.cdn.printful.com/products/358/10163_1553083889.jpg",
+        "name": "Kiss Cut Stickers (3x3in)"
+      },
+      "files": [
+        {
+          "id": 349262339,
+          "type": "default",
+          "hash": "ca858feb9d91b008a75ff15e894e9473",
+          "url": "https://www.googleapis.com/drive/v2/files/1jYtM39HRaNdSBtVBckCi54-FBt1kGD3B?alt=media",
+          "filename": "The-Centaur.jpg",
+          "mime_type": "image/jpeg",
+          "size": 3875705,
+          "width": 2199,
+          "height": 2801,
+          "dpi": 300,
+          "status": "ok",
+          "created": 1629032428,
+          "thumbnail_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_preview.png",
+          "visible": true
+        },
+        {
+          "id": 349262853,
+          "type": "preview",
+          "hash": "15e76888e332529165566a6205a16cd1",
+          "url": null,
+          "filename": "kiss-cut-stickers-3x3-default-611910a9c08e4.jpg",
+          "mime_type": "image/jpeg",
+          "size": 75954,
+          "width": 1000,
+          "height": 1000,
+          "dpi": null,
+          "status": "ok",
+          "created": 1629032619,
+          "thumbnail_url": "https://files.cdn.printful.com/files/15e/15e76888e332529165566a6205a16cd1_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/15e/15e76888e332529165566a6205a16cd1_preview.png",
+          "visible": false
+        }
+      ],
+      "options": [],
+      "is_ignored": false
+    },
+    {
+      "id": 2771226289,
+      "external_id": "611910aba8cf21",
+      "sync_product_id": 239664748,
+      "name": "The Centaur - 4x4",
+      "synced": true,
+      "variant_id": 10164,
+      "warehouse_product_variant_id": null,
+      "retail_price": "4.00",
+      "sku": "611910ABA78AB_4x4",
+      "currency": "CAD",
+      "product": {
+        "variant_id": 10164,
+        "product_id": 358,
+        "image": "https://files.cdn.printful.com/products/358/10164_1553083894.jpg",
+        "name": "Kiss Cut Stickers (4x4in)"
+      },
+      "files": [
+        {
+          "id": 349262339,
+          "type": "default",
+          "hash": "ca858feb9d91b008a75ff15e894e9473",
+          "url": "https://www.googleapis.com/drive/v2/files/1jYtM39HRaNdSBtVBckCi54-FBt1kGD3B?alt=media",
+          "filename": "The-Centaur.jpg",
+          "mime_type": "image/jpeg",
+          "size": 3875705,
+          "width": 2199,
+          "height": 2801,
+          "dpi": 300,
+          "status": "ok",
+          "created": 1629032428,
+          "thumbnail_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_preview.png",
+          "visible": true
+        },
+        {
+          "id": 349262854,
+          "type": "preview",
+          "hash": "5cc4c18fabaff945bc2bd1178db46657",
+          "url": null,
+          "filename": "kiss-cut-stickers-4x4-default-611910a9c096c.jpg",
+          "mime_type": "image/jpeg",
+          "size": 119790,
+          "width": 1000,
+          "height": 1000,
+          "dpi": null,
+          "status": "ok",
+          "created": 1629032619,
+          "thumbnail_url": "https://files.cdn.printful.com/files/5cc/5cc4c18fabaff945bc2bd1178db46657_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/5cc/5cc4c18fabaff945bc2bd1178db46657_preview.png",
+          "visible": false
+        }
+      ],
+      "options": [],
+      "is_ignored": false
+    },
+    {
+      "id": 2771226290,
+      "external_id": "611910aba8cf88",
+      "sync_product_id": 239664748,
+      "name": "The Centaur - 5.5x5.5",
+      "synced": true,
+      "variant_id": 10165,
+      "warehouse_product_variant_id": null,
+      "retail_price": "4.50",
+      "sku": "611910ABA78AB_5.5x5.5",
+      "currency": "CAD",
+      "product": {
+        "variant_id": 10165,
+        "product_id": 358,
+        "image": "https://files.cdn.printful.com/products/358/10165_1553083897.jpg",
+        "name": "Kiss Cut Stickers (5.5x5.5in)"
+      },
+      "files": [
+        {
+          "id": 349262339,
+          "type": "default",
+          "hash": "ca858feb9d91b008a75ff15e894e9473",
+          "url": "https://www.googleapis.com/drive/v2/files/1jYtM39HRaNdSBtVBckCi54-FBt1kGD3B?alt=media",
+          "filename": "The-Centaur.jpg",
+          "mime_type": "image/jpeg",
+          "size": 3875705,
+          "width": 2199,
+          "height": 2801,
+          "dpi": 300,
+          "status": "ok",
+          "created": 1629032428,
+          "thumbnail_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/ca8/ca858feb9d91b008a75ff15e894e9473_preview.png",
+          "visible": true
+        },
+        {
+          "id": 349262855,
+          "type": "preview",
+          "hash": "4c35858a8b3c88b2e430831c07afcca5",
+          "url": null,
+          "filename": "kiss-cut-stickers-5.5x5.5-default-611910a9c09b7.jpg",
+          "mime_type": "image/jpeg",
+          "size": 207883,
+          "width": 1000,
+          "height": 1000,
+          "dpi": null,
+          "status": "ok",
+          "created": 1629032619,
+          "thumbnail_url": "https://files.cdn.printful.com/files/4c3/4c35858a8b3c88b2e430831c07afcca5_thumb.png",
+          "preview_url": "https://files.cdn.printful.com/files/4c3/4c35858a8b3c88b2e430831c07afcca5_preview.png",
+          "visible": false
+        }
+      ],
+      "options": [],
+      "is_ignored": false
+    }
+  ]
+}
