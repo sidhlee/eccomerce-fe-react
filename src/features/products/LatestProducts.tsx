@@ -11,9 +11,7 @@ const HomePage: React.FC<HomeScreenProps> = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get<IProduct[]>(
-        'http://localhost:8000/api/products'
-      );
+      const { data } = await axios.get<IProduct[]>('/api/products');
       setProducts(data);
     };
     fetchProduct();
