@@ -3,8 +3,8 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 import LikeButton from '../../components/LikeButton';
 
-type ProductProps = {
-  id: string;
+type ProductCardProps = {
+  id: number;
   category: string;
   name: string;
   likes: number;
@@ -13,7 +13,7 @@ type ProductProps = {
   image_url: string;
 };
 
-const Product: React.FC<ProductProps> = (props) => {
+const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { id, category, name, likes, price, sale_price, image_url } = props;
   console.log(image_url);
 
@@ -71,4 +71,4 @@ const Product: React.FC<ProductProps> = (props) => {
   );
 };
 
-export default Product;
+export default ProductCard;

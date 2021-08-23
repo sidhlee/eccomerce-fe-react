@@ -18,27 +18,35 @@ import {
   VStack,
   Wrap,
 } from '@chakra-ui/react';
-import products from '../../temp/products';
+
 import LikeButton from '../../components/LikeButton';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import axios from 'axios';
+import { IProduct } from './types';
 
 type ProductPageProps = {};
 
 const ProductPage: React.FC<ProductPageProps> = () => {
   const { params } = useRouteMatch<{ id: string }>();
-  const product = products.find(
-    (p) => p.sync_product.id.toString() === params.id
-  );
-  const variants = product?.sync_variants!;
+
+  const [product, setProduct] = useState<IProduct | null>();
   const [variantIndex, setVariantIndex] = useState(0);
-  const variant = variants[variantIndex];
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get('/api/products/' + params.id);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [params.id]);
+
+  const variants = product?.variants! || [];
+  const currentVariant = variants.length > 0 ? variants[variantIndex] : null;
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setVariantIndex(+e.target.value);
   };
-  const imgSrc = variant.files
-    ? variant.files[1].preview_url
-    : product?.sync_product.thumbnail_url;
+  const imgSrc = currentVariant?.image_url;
 
   return (
     <Container maxWidth="container.lg">
@@ -46,48 +54,59 @@ const ProductPage: React.FC<ProductPageProps> = () => {
         Go back
       </Button>
       <SimpleGrid columns={[1, 2, 2, 2]}>
-        <Image src={imgSrc} />
-        <VStack alignSelf="center" justify="start" align="start" spacing="5">
-          <Flex w="100%" justifyContent="space-between">
-            <Heading as="h1">{variant.name}</Heading>
-            <LikeButton likes={11} />
-          </Flex>
-          <Text>{variant.product?.name}</Text>
-          <Text as="span" fontSize="xl">
-            CA ${variant.retail_price}
-          </Text>
-          <Wrap as="form" w="100%" spacing="4">
-            {variants.length > 1 ? (
-              <FormControl mb="3" flex="1 1" minW="fit-content">
-                <FormLabel>Variant</FormLabel>
-                <Select onChange={handleSelectChange} value={variantIndex}>
-                  {variants?.map((v, i) => (
-                    <option value={i}>{v.name}</option>
-                  ))}
-                </Select>
-              </FormControl>
-            ) : null}
-            <FormControl flex="1 1">
-              <FormLabel>Quantity</FormLabel>
-              <NumberInput defaultValue={1} min={1}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>
-            <Button
-              w="100%"
-              size="lg"
-              fontWeight="bold"
-              bg="pink.100"
-              _hover={{ bg: 'pink.200' }}
+        {product && currentVariant ? (
+          <>
+            <Image src={imgSrc} />
+            <VStack
+              alignSelf="center"
+              justify="start"
+              align="start"
+              spacing="5"
             >
-              Add to cart
-            </Button>
-          </Wrap>
-        </VStack>
+              <Flex w="100%" justifyContent="space-between">
+                <Heading as="h1">{currentVariant.name}</Heading>
+                <LikeButton likes={currentVariant.likes} />
+              </Flex>
+              <Text>{currentVariant?.name}</Text>
+              <Text as="span" fontSize="xl">
+                CA ${currentVariant?.price}
+              </Text>
+              <Wrap as="form" w="100%" spacing="4">
+                {variants.length > 1 ? (
+                  <FormControl mb="3" flex="1 1" minW="fit-content">
+                    <FormLabel>Variant</FormLabel>
+                    <Select onChange={handleSelectChange} value={variantIndex}>
+                      {variants?.map((v, i) => (
+                        <option key={v.name} value={i}>
+                          {v.name}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                ) : null}
+                <FormControl flex="1 1">
+                  <FormLabel>Quantity</FormLabel>
+                  <NumberInput defaultValue={1} min={1}>
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+                <Button
+                  w="100%"
+                  size="lg"
+                  fontWeight="bold"
+                  bg="pink.100"
+                  _hover={{ bg: 'pink.200' }}
+                >
+                  Add to cart
+                </Button>
+              </Wrap>
+            </VStack>
+          </>
+        ) : null}
       </SimpleGrid>
     </Container>
   );

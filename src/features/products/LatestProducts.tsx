@@ -1,7 +1,7 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Product from './ProductCard';
+import ProductCard from './ProductCard';
 import { IProduct } from './types';
 
 type HomeScreenProps = {};
@@ -10,11 +10,11 @@ const HomePage: React.FC<HomeScreenProps> = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProducts = async () => {
       const { data } = await axios.get<IProduct[]>('/api/products');
       setProducts(data);
     };
-    fetchProduct();
+    fetchProducts();
   }, []);
 
   return (
@@ -23,17 +23,20 @@ const HomePage: React.FC<HomeScreenProps> = () => {
         Latest Products
       </Heading>
       <SimpleGrid columns={[1, 2, 3, 4]} gap="5">
-        {products.map((p) => (
-          <Product
-            key={p.sync_product.id}
-            id={p.sync_product.id.toString()}
-            category={p.sync_variants[0].product.name || ''}
-            name={p.sync_product.name}
-            likes={111}
-            price={p.sync_variants[0].retail_price || ''}
-            image_url={p.sync_product.thumbnail_url}
-          />
-        ))}
+        {products.map((p) => {
+          const popularVariant = p.variants[0];
+          return (
+            <ProductCard
+              key={p.id}
+              id={p.id}
+              category={popularVariant.product_name || ''}
+              name={p.name}
+              likes={popularVariant.likes}
+              price={popularVariant.price || ''}
+              image_url={popularVariant.image_url}
+            />
+          );
+        })}
       </SimpleGrid>
     </div>
   );
