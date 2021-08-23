@@ -1,10 +1,10 @@
 import { Box, ChakraProvider, Container, Flex } from '@chakra-ui/react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Footer from './features/layout/Footer';
-import Header from './features/layout/Header';
-import LatestProducts from './features/products/LatestProducts';
-import theme from './chakra-theme';
-import ProductPage from './features/products/ProductPage';
+import Footer from '../features/layout/Footer';
+import Header from '../features/layout/Header';
+import LatestProducts from '../features/products/LatestProducts';
+import theme from '../chakra-theme';
+import ProductPage from '../features/products/ProductPage';
 
 function App() {
   return (
