@@ -9,3 +9,8 @@ Changed the following from the original course content:
 - Used TypeScript
 - Replaced React-Bootstrap with Chakra-UI
 - Use [officially recommended folder structure](https://redux.js.org/faq/code-structure#what-should-my-file-structure-look-like-how-should-i-group-my-action-creators-and-reducers-in-my-project-where-should-my-selectors-go) for Redux
+
+## Reference
+
+- [Ducks: Redux Reducer Bundles](https://github.com/erikras/ducks-modular-redux)
+- [How to build a type-safe React Redux app](https://blog.logrocket.com/how-to-build-a-type-safe-react-redux-app/)

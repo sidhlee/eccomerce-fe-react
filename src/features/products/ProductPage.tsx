@@ -19,7 +19,7 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 
-import LikeButton from '../../components/LikeButton';
+import LikeButton from '../../common/components/LikeButton';
 import { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import { IProduct } from './types';

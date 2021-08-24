@@ -1,7 +1,7 @@
 import { Badge, Box, Flex, Image, Heading, Link } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-import LikeButton from '../../components/LikeButton';
+import LikeButton from '../../common/components/LikeButton';
 
 type ProductCardProps = {
   id: number;
