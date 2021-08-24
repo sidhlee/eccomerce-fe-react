@@ -1,6 +1,7 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import Loader from '../../common/components/Loader';
 import ProductCard from './ProductCard';
 import { fetchProductsThunk } from './productsSlice';
 
@@ -22,7 +23,7 @@ const HomePage: React.FC<HomeScreenProps> = () => {
         Latest Products
       </Heading>
       {loading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : error ? (
         <h3>{error}</h3>
       ) : (
