@@ -20,28 +20,22 @@ import {
 } from '@chakra-ui/react';
 
 import LikeButton from '../../common/components/LikeButton';
-import { ChangeEvent, useEffect, useState } from 'react';
-import axios from 'axios';
-import { IProduct } from './types';
+import { ChangeEvent, useState } from 'react';
+import { useGetProductByIdQuery } from '../../services/product';
+import { IVariant } from './types';
+import Loader from '../../common/components/Loader';
+import Message from '../../common/components/Message';
 
 type ProductPageProps = {};
 
 const ProductPage: React.FC<ProductPageProps> = () => {
   const { params } = useRouteMatch<{ id: string }>();
 
-  const [product, setProduct] = useState<IProduct | null>();
+  const { data: product, error, isLoading } = useGetProductByIdQuery(params.id);
   const [variantIndex, setVariantIndex] = useState(0);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get('/api/products/' + params.id);
-      setProduct(data);
-    };
-    fetchProduct();
-  }, [params.id]);
-
   const variants = product?.variants! || [];
-  const currentVariant = variants.length > 0 ? variants[variantIndex] : null;
+  const currentVariant = variants[variantIndex] as IVariant;
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setVariantIndex(+e.target.value);
@@ -54,7 +48,13 @@ const ProductPage: React.FC<ProductPageProps> = () => {
         Go back
       </Button>
       <SimpleGrid columns={[1, 2, 2, 2]}>
-        {product && currentVariant ? (
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <Message status="error">
+            Could not load the product data. Please try again later.
+          </Message>
+        ) : (
           <>
             <Image src={imgSrc} />
             <VStack
@@ -106,7 +106,7 @@ const ProductPage: React.FC<ProductPageProps> = () => {
               </Wrap>
             </VStack>
           </>
-        ) : null}
+        )}
       </SimpleGrid>
     </Container>
   );

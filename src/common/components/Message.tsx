@@ -6,7 +6,7 @@ type MessageProps = {
 
 const Message: React.FC<MessageProps> = ({ status, children }) => {
   return (
-    <Alert status={status}>
+    <Alert status={status} gridColumn="1 / -1" my="5">
       <AlertIcon />
       {children}
     </Alert>
