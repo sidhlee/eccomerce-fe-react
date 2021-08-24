@@ -1,43 +1,48 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import ProductCard from './ProductCard';
-import { IProduct } from './types';
+import { fetchProductsThunk } from './productsSlice';
 
 type HomeScreenProps = {};
 
 const HomePage: React.FC<HomeScreenProps> = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const dispatch = useAppDispatch();
+  const { productList, error, loading } = useAppSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get<IProduct[]>('/api/products');
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+    dispatch(fetchProductsThunk());
+  }, [dispatch]);
 
   return (
     <div>
       <Heading as="h1" my="5">
         Latest Products
       </Heading>
-      <SimpleGrid columns={[1, 2, 3, 4]} gap="5">
-        {products.map((p) => {
-          const popularVariant = p.variants[0];
-          return (
-            <ProductCard
-              key={p.id}
-              id={p.id}
-              category={popularVariant.product_name || ''}
-              name={p.name}
-              likes={popularVariant.likes}
-              price={popularVariant.price || ''}
-              image_url={popularVariant.image_url}
-            />
-          );
-        })}
-      </SimpleGrid>
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <h3>{error}</h3>
+      ) : (
+        <SimpleGrid columns={[1, 2, 3, 4]} gap="5">
+          {productList.map((p) => {
+            const popularVariant = p.variants[0];
+            return (
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                category={popularVariant.product_name || ''}
+                name={p.name}
+                likes={popularVariant.likes}
+                price={popularVariant.price || ''}
+                image_url={popularVariant.image_url}
+              />
+            );
+          })}
+        </SimpleGrid>
+      )}
     </div>
   );
 };
