@@ -2,6 +2,7 @@ import { Heading, SimpleGrid } from '@chakra-ui/react';
 import Loader from '../../common/components/Loader';
 import ProductCard from './ProductCard';
 import { useGetProductsQuery } from '../../services/product';
+import Message from '../../common/components/Message';
 
 type HomeScreenProps = {};
 
@@ -20,7 +21,9 @@ const HomePage: React.FC<HomeScreenProps> = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <h3>Could not load the product data. Please try again later.</h3>
+        <Message status="error">
+          Could not load the product data. Please try again later.
+        </Message>
       ) : (
         <SimpleGrid columns={[1, 2, 3, 4]} gap="5">
           {productList?.map((p) => {
