@@ -1,7 +1,7 @@
-import productsReducer from '../features/products/productsSlice';
+import { productApi } from '../services/product';
 
 const rootReducer = {
-  products: productsReducer,
+  [productApi.reducerPath]: productApi.reducer,
 };
 
 export default rootReducer;

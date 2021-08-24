@@ -15,7 +15,6 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { id, category, name, likes, price, sale_price, image_url } = props;
-  console.log(image_url);
 
   return (
     <Link

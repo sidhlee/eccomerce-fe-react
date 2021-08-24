@@ -1,34 +1,29 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../../common/components/Loader';
 import ProductCard from './ProductCard';
-import { fetchProductsThunk } from './productsSlice';
+import { useGetProductsQuery } from '../../services/product';
 
 type HomeScreenProps = {};
 
 const HomePage: React.FC<HomeScreenProps> = () => {
-  const dispatch = useAppDispatch();
-  const { productList, error, loading } = useAppSelector(
-    (state) => state.products
-  );
-
-  useEffect(() => {
-    dispatch(fetchProductsThunk());
-  }, [dispatch]);
+  const {
+    data: productList,
+    error,
+    isLoading,
+  } = useGetProductsQuery(undefined);
 
   return (
     <div>
       <Heading as="h1" my="5">
         Latest Products
       </Heading>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : error ? (
-        <h3>{error}</h3>
+        <h3>Could not load the product data. Please try again later.</h3>
       ) : (
         <SimpleGrid columns={[1, 2, 3, 4]} gap="5">
-          {productList.map((p) => {
+          {productList?.map((p) => {
             const popularVariant = p.variants[0];
             return (
               <ProductCard
