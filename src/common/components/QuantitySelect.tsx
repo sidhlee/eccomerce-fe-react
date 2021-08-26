@@ -11,16 +11,22 @@ import {
 type QuantitySelectProps = {
 	handleQuantityChange: (valueString: string) => void;
 	labelHidden?: true;
+	defaultValue?: number;
 };
 
 const QuantitySelect: React.FC<QuantitySelectProps> = ({
 	handleQuantityChange,
 	labelHidden,
+	defaultValue = 1,
 }) => {
 	return (
 		<FormControl flex="1 1">
 			<FormLabel srOnly={labelHidden}>Quantity</FormLabel>
-			<NumberInput defaultValue={1} min={1} onChange={handleQuantityChange}>
+			<NumberInput
+				defaultValue={defaultValue}
+				min={1}
+				onChange={handleQuantityChange}
+			>
 				<NumberInputField />
 				<NumberInputStepper>
 					<NumberIncrementStepper />

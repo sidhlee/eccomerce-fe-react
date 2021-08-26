@@ -113,6 +113,7 @@ const CartPage: React.FC<CartPageProps> = () => {
 											handleQuantityChange={(valueString: string) => {
 												handleQuantityChange(valueString, item);
 											}}
+											defaultValue={item.qty}
 											labelHidden
 										/>
 									</Box>
