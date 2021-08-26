@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Heading, Stack } from '@chakra-ui/react';
+import { Box, Button, Heading, Stack } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import {
   Link as ReactRouterLink,
@@ -8,8 +8,8 @@ import {
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Message from '../../common/components/Message';
 import { useGetVariantByIdQuery } from '../../services/product';
-import CartItem from './CartItem';
-import { addCartItem } from './cartSlice';
+import CartItems from './CartItems';
+import { addCartItem, removeCartItem } from './cartSlice';
 import CartSummary from './CartSummary';
 import { ICartItem } from './cartTypes';
 
@@ -63,6 +63,10 @@ const CartPage: React.FC<CartPageProps> = () => {
     );
   };
 
+  const handleRemoveItemClick = (id: number) => {
+    dispatch(removeCartItem(id));
+  };
+
   return (
     <Stack direction={['column', 'column', 'row', 'row']} spacing="3rem">
       <Box flex="2">
@@ -75,9 +79,10 @@ const CartPage: React.FC<CartPageProps> = () => {
             </Button>
           </Message>
         ) : (
-          <CartItem
+          <CartItems
             cartItems={cartItems}
             handleQuantityChange={handleQuantityChange}
+            handleRemoveItemClick={handleRemoveItemClick}
           />
         )}
       </Box>

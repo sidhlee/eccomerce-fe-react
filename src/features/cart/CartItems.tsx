@@ -1,27 +1,26 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import {
   Box,
-  Button,
-  CloseButton,
   Divider,
   IconButton,
   Image,
   List,
-  ListItem,
   Flex,
   Text,
 } from '@chakra-ui/react';
 import QuantitySelect from '../../common/components/QuantitySelect';
 import { ICartItem } from './cartTypes';
 
-type CartItemProps = {
+type CartItemsProps = {
   cartItems: ICartItem[];
   handleQuantityChange: (valueString: string, item: ICartItem) => void;
+  handleRemoveItemClick: (id: number) => void;
 };
 
-const CartItem: React.FC<CartItemProps> = ({
+const CartItems: React.FC<CartItemsProps> = ({
   cartItems,
   handleQuantityChange,
+  handleRemoveItemClick,
 }) => {
   return (
     <List mt="5">
@@ -65,6 +64,8 @@ const CartItem: React.FC<CartItemProps> = ({
             </Box>
             <Box ml="auto">
               <IconButton
+                type="button"
+                onClick={() => handleRemoveItemClick(item.variant)}
                 size="sm"
                 icon={<DeleteIcon />}
                 aria-label="remove item"
@@ -77,4 +78,4 @@ const CartItem: React.FC<CartItemProps> = ({
   );
 };
 
-export default CartItem;
+export default CartItems;
