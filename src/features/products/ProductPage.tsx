@@ -1,4 +1,4 @@
-import { useRouteMatch, Link as ReactRouterLink } from 'react-router-dom';
+import { useRouteMatch, Link as ReactRouterLink, useHistory } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -22,7 +22,7 @@ import {
 import LikeButton from '../../common/components/LikeButton';
 import { ChangeEvent, useState } from 'react';
 import { useGetProductByIdQuery } from '../../services/product';
-import { IVariant } from './types';
+import { IVariant } from './productsTypes';
 import Loader from '../../common/components/Loader';
 import Message from '../../common/components/Message';
 
@@ -40,8 +40,23 @@ const ProductPage: React.FC<ProductPageProps> = () => {
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setVariantIndex(+e.target.value);
   };
-  const imgSrc = currentVariant?.image_url;
 
+
+  const [quantity, setQuantity] = useState(1);
+
+  // Chakra UI's NumberInput passes valueString into onChange handler, not the event object.
+  const handleQuantityChange = (valueString: string) => {
+    setQuantity(+valueString)
+  }
+  
+  const history = useHistory()
+  
+  const handleAddToCartClick = () => {
+    const variantId = currentVariant.id
+    history.push(`/cart/${variantId}?qty=${quantity}`)
+  }
+  
+  const imgSrc = currentVariant?.image_url;
   return (
     <Container maxWidth="container.lg">
       <Button as={ReactRouterLink} to="/">
@@ -86,7 +101,7 @@ const ProductPage: React.FC<ProductPageProps> = () => {
                 ) : null}
                 <FormControl flex="1 1">
                   <FormLabel>Quantity</FormLabel>
-                  <NumberInput defaultValue={1} min={1}>
+                  <NumberInput defaultValue={1} min={1} onChange={handleQuantityChange}>
                     <NumberInputField />
                     <NumberInputStepper>
                       <NumberIncrementStepper />
@@ -100,6 +115,7 @@ const ProductPage: React.FC<ProductPageProps> = () => {
                   fontWeight="bold"
                   bg="pink.100"
                   _hover={{ bg: 'pink.200' }}
+                  onClick={handleAddToCartClick}
                 >
                   Add to cart
                 </Button>

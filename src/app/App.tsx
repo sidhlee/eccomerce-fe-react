@@ -5,6 +5,7 @@ import Header from '../features/layout/Header';
 import LatestProducts from '../features/products/LatestProducts';
 import theme from '../common/style/chakra-theme';
 import ProductPage from '../features/products/ProductPage';
+import CartPage from '../features/cart/CartPage';
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
               </Route>
               <Route path="/product/:id">
                 <ProductPage />
+              </Route>
+              {/* make id param optional */}
+              <Route path="/cart/:id?">
+                <CartPage />
               </Route>
             </Container>
           </Box>
