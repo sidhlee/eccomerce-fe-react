@@ -1,4 +1,16 @@
-import { Box, Divider, Image, List, ListItem, Text } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Button,
+  CloseButton,
+  Divider,
+  IconButton,
+  Image,
+  List,
+  ListItem,
+  Flex,
+  Text,
+} from '@chakra-ui/react';
 import QuantitySelect from '../../common/components/QuantitySelect';
 import { ICartItem } from './cartTypes';
 
@@ -16,8 +28,13 @@ const CartItem: React.FC<CartItemProps> = ({
       {cartItems.map((item) => (
         <>
           <Divider />
-          <ListItem key={item.variant} display="flex" py="7">
-            <Box pos="relative" flex="1">
+          <Flex key={item.variant} py="7">
+            <Box
+              pos="relative"
+              minW={['118px', '118px', '150px']}
+              minH={['118px', '118px', '150px']}
+              mr={[3, 3, 5]}
+            >
               {/* TODO: fetch thumbnail url from server */}
               <Image
                 pos="absolute"
@@ -30,7 +47,7 @@ const CartItem: React.FC<CartItemProps> = ({
                 objectFit="contain"
               />
             </Box>
-            <Box flex="1">
+            <Box>
               <Text mb="2" fontSize="lg">
                 ${item.price}
               </Text>
@@ -46,7 +63,14 @@ const CartItem: React.FC<CartItemProps> = ({
                 labelHidden
               />
             </Box>
-          </ListItem>
+            <Box ml="auto">
+              <IconButton
+                size="sm"
+                icon={<DeleteIcon />}
+                aria-label="remove item"
+              />
+            </Box>
+          </Flex>
         </>
       ))}
     </List>

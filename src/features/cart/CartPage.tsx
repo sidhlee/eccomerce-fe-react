@@ -63,27 +63,25 @@ const CartPage: React.FC<CartPageProps> = () => {
   };
 
   return (
-    <Container maxWidth="container.lg">
-      <Flex direction={['column', 'row']}>
-        <Box flex="2">
-          <Heading as="h1">My Cart</Heading>
-          {cartItems.length === 0 ? (
-            <Message status="info">
-              Your cart is empty{' '}
-              <Button as={ReactRouterLink} to="/" ml="auto">
-                Go Back
-              </Button>
-            </Message>
-          ) : (
-            <CartItem
-              cartItems={cartItems}
-              handleQuantityChange={handleQuantityChange}
-            />
-          )}
-        </Box>
-        <Box flex="1"></Box>
-      </Flex>
-    </Container>
+    <Flex direction={['column', 'column', 'column', 'row']}>
+      <Box flex="2">
+        <Heading as="h1">My Cart</Heading>
+        {cartItems.length === 0 ? (
+          <Message status="info">
+            Your cart is empty{' '}
+            <Button as={ReactRouterLink} to="/" ml="auto">
+              Go Back
+            </Button>
+          </Message>
+        ) : (
+          <CartItem
+            cartItems={cartItems}
+            handleQuantityChange={handleQuantityChange}
+          />
+        )}
+      </Box>
+      <Box flex="1"></Box>
+    </Flex>
   );
 };
 
