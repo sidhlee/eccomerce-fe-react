@@ -17,4 +17,5 @@ export interface IVariant {
   created_at: string;
   likes: number;
   image_url: string;
+  thumbnail_url: string;
 }
