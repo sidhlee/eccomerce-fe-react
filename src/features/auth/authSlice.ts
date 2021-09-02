@@ -5,19 +5,18 @@ import { User } from './authTypes';
 // https://redux-toolkit.js.org/rtk-query/usage/examples#dispatching-an-action-to-set-the-user-state
 type AuthState = {
   user: User | null;
-  token: string | null;
+};
+
+const initialState: AuthState = {
+  user: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { user: null, token: null } as AuthState,
+  initialState,
   reducers: {
-    setCredentials: (
-      state,
-      { payload: { user, token } }: PayloadAction<{ user: User; token: string }>
-    ) => {
+    setCredentials: (state, { payload: user }: PayloadAction<User>) => {
       state.user = user;
-      state.token = token;
     },
   },
 });

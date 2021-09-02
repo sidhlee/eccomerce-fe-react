@@ -5,14 +5,14 @@ export const productApi = createApi({
   // Defaults to 'api'. if you call createApi more than once in your application,
   // you will need to provide a unique value here.
   reducerPath: 'productApi',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/products/' }),
   endpoints: (builder) => ({
     // <output, input>
     getProducts: builder.query<IProduct[], undefined>({
-      query: () => 'products',
+      query: () => '',
     }),
     getProductById: builder.query<IProduct, string>({
-      query: (id) => `products/${id}`,
+      query: (id) => `${id}`,
     }),
     getVariantById: builder.query<IVariant, string>({
       query: (id) => `variant/${id}`,

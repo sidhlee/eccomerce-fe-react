@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { User } from '../features/auth/authTypes';
 
 export interface LoginRequest {
+  // TODO: change username to email because that's what it is!
   username: string;
   password: string;
 }
@@ -11,11 +12,11 @@ export interface LoginRequest {
 export const authApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api/',
+    baseUrl: '/api/users/',
     prepareHeaders: (headers, { getState }) => {
       // if we have a token in the store, use that.
       // RootState is directly typed from ReturnType of store.getState
-      const token = (getState() as RootState).auth.token;
+      const token = (getState() as RootState).auth.user?.token;
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
@@ -28,7 +29,7 @@ export const authApi = createApi({
     login: build.mutation<User, LoginRequest>({
       query(body) {
         return {
-          url: 'login',
+          url: 'login/',
           method: 'POST',
           body,
         };

@@ -6,6 +6,7 @@ import LatestProducts from '../features/products/LatestProducts';
 import theme from '../common/style/chakra-theme';
 import ProductPage from '../features/products/ProductPage';
 import CartPage from '../features/cart/CartPage';
+import LoginPage from '../features/auth/LoginPage';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
               {/* make id param optional */}
               <Route path="/cart/:id?">
                 <CartPage />
+              </Route>
+              <Route path="/login">
+                <LoginPage />
               </Route>
             </Container>
           </Box>

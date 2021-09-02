@@ -3,6 +3,7 @@ import reducer from './rootReducer';
 import logger from 'redux-logger';
 import { productApi } from '../services/productService';
 import cartMiddleware from '../features/cart/cartMiddleware';
+import authMiddleware from '../features/auth/authMiddleware';
 
 const storageItems = localStorage.getItem('cartItems');
 const cartItemsFromStorage = storageItems ? JSON.parse(storageItems) : [];
@@ -14,7 +15,9 @@ const preloadedState = {
   cart: {
     cartItems: cartItemsFromStorage,
   },
-  user: userFromStorage,
+  auth: {
+    user: userFromStorage,
+  },
 };
 
 const store = configureStore({
@@ -23,7 +26,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .prepend()
-      .concat(productApi.middleware, cartMiddleware, logger),
+      .concat(productApi.middleware, authMiddleware, cartMiddleware, logger),
 });
 
 export default store;
