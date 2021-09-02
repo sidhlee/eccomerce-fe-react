@@ -4,7 +4,7 @@ type FooterProps = {};
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <Box py="3">
+    <Box as="footer" py="3">
       <Container>
         <Text textAlign="center">
           Copyright &copy; {new Date().getFullYear()} Sid Lee

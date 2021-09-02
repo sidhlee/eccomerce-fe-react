@@ -23,8 +23,9 @@ const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box as="header">
       <Flex
+        as="nav"
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
