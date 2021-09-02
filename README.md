@@ -15,6 +15,7 @@ Changed the following from the original course content:
 - [Ducks: Redux Reducer Bundles](https://github.com/erikras/ducks-modular-redux)
 - [How to build a type-safe React Redux app](https://blog.logrocket.com/how-to-build-a-type-safe-react-redux-app/)
 - [Authentication example using RTK Query](https://redux-toolkit.js.org/rtk-query/usage/examples#authentication)
+- [RTK Query React Example](https://redux-toolkit.js.org/rtk-query/usage/examples#react-hooks)
 
 ## TODOS
 

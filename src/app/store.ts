@@ -7,10 +7,14 @@ import cartMiddleware from '../features/cart/cartMiddleware';
 const storageItems = localStorage.getItem('cartItems');
 const cartItemsFromStorage = storageItems ? JSON.parse(storageItems) : [];
 
+const user = localStorage.getItem('user');
+const userFromStorage = user ? JSON.parse(user) : null;
+
 const preloadedState = {
   cart: {
     cartItems: cartItemsFromStorage,
   },
+  user: userFromStorage,
 };
 
 const store = configureStore({
