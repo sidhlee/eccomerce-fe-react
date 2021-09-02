@@ -1,9 +1,11 @@
-import { productApi } from '../services/product';
-import cartReducer from '../features/cart/cartSlice'
+import { productApi } from '../services/productService';
+import cartReducer from '../features/cart/cartSlice';
+import authReducer from '../features/auth/authSlice';
 
 const rootReducer = {
   [productApi.reducerPath]: productApi.reducer,
-  cart: cartReducer
+  cart: cartReducer,
+  auth: authReducer,
 };
 
 export default rootReducer;

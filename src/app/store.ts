@@ -1,24 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './rootReducer';
 import logger from 'redux-logger';
-import { productApi } from '../services/product';
+import { productApi } from '../services/productService';
 import cartMiddleware from '../features/cart/cartMiddleware';
 
-const storageItems = localStorage.getItem('cartItems')
-const cartItemsFromStorage = storageItems ?
-  JSON.parse(storageItems) : []
+const storageItems = localStorage.getItem('cartItems');
+const cartItemsFromStorage = storageItems ? JSON.parse(storageItems) : [];
 
 const preloadedState = {
   cart: {
-    cartItems: cartItemsFromStorage
-  }
-}
+    cartItems: cartItemsFromStorage,
+  },
+};
 
 const store = configureStore({
   preloadedState,
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend().concat(productApi.middleware, cartMiddleware, logger),
+    getDefaultMiddleware()
+      .prepend()
+      .concat(productApi.middleware, cartMiddleware, logger),
 });
 
 export default store;

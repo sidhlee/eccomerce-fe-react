@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Message from '../../common/components/Message';
-import { useGetVariantByIdQuery } from '../../services/product';
+import { useGetVariantByIdQuery } from '../../services/productService';
 import CartItems from './CartItems';
 import { addCartItem, removeCartItem } from './cartSlice';
 import CartSummary from './CartSummary';

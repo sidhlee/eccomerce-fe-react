@@ -1,7 +1,7 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
 import Loader from '../../common/components/Loader';
 import ProductCard from './ProductCard';
-import { useGetProductsQuery } from '../../services/product';
+import { useGetProductsQuery } from '../../services/productService';
 import Message from '../../common/components/Message';
 
 type HomeScreenProps = {};
