@@ -5,15 +5,21 @@ import {
   Flex,
   IconButton,
   Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Stack,
   useBreakpointValue,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { logOut } from '../auth/authSlice';
 
 // https://chakra-templates.dev/navigation/navbar
 
@@ -21,6 +27,13 @@ type NavbarProps = {};
 
 const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const user = useAppSelector((state) => state.auth.user);
+
+  const dispatch = useAppDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(logOut());
+  };
 
   return (
     <Box as="header">
@@ -72,30 +85,52 @@ const Navbar: React.FC<NavbarProps> = () => {
           direction={'row'}
           spacing={6}
         >
-          <Button
-            as={ReactRouterLink}
-            to="/login"
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-          >
-            Sign In
-          </Button>
-          <Button
-            as={ReactRouterLink}
-            to="/signup"
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}
-          >
-            Sign Up
-          </Button>
+          {user ? (
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                variant="unstyled"
+              >
+                {user.name}
+              </MenuButton>
+              <MenuList>
+                <MenuItem as={ReactRouterLink} to="/profile">
+                  Profile
+                </MenuItem>
+                <MenuItem as="button" onClick={handleLogoutClick}>
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <>
+              <Button
+                as={ReactRouterLink}
+                to="/login"
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+              >
+                Sign In
+              </Button>
+              <Button
+                as={ReactRouterLink}
+                to="/signup"
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'pink.400'}
+                href={'#'}
+                _hover={{
+                  bg: 'pink.300',
+                }}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </Stack>
       </Flex>
 
