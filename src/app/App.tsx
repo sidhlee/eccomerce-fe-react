@@ -7,6 +7,7 @@ import ProductPage from '../features/products/ProductPage';
 import CartPage from '../features/cart/CartPage';
 import LoginPage from '../features/auth/LoginPage';
 import Navbar from '../features/layout/Navbar';
+import SignupPage from '../features/auth/SignupPage';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
               </Route>
               <Route path="/login">
                 <LoginPage />
+              </Route>
+              <Route path="/signup">
+                <SignupPage />
               </Route>
             </Container>
           </Box>
