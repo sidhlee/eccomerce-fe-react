@@ -8,6 +8,12 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface SignupRequest {
+  username: string;
+  email: string;
+  password: string;
+}
+
 // https://redux-toolkit.js.org/rtk-query/usage/examples#dispatching-an-action-to-set-the-user-state
 export const authApi = createApi({
   reducerPath: 'userApi',
@@ -35,7 +41,16 @@ export const authApi = createApi({
         };
       },
     }),
+    signup: build.mutation<User, SignupRequest>({
+      query(body) {
+        return {
+          url: 'register/',
+          method: 'POST',
+          body,
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useSignupMutation } = authApi;
