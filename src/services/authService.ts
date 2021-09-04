@@ -4,7 +4,7 @@ import { User } from '../features/auth/authTypes';
 
 export interface LoginRequest {
   // TODO: change username to email because that's what it is!
-  username: string;
+  email: string;
   password: string;
 }
 

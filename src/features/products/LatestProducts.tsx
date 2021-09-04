@@ -20,7 +20,7 @@ const HomePage: React.FC<HomeScreenProps> = () => {
       </Heading>
       {isLoading ? (
         <Loader />
-      ) : error ? (
+      ) : error || productList?.length === 0 ? (
         <Message status="error">
           Could not load the product data. Please try again later.
         </Message>
