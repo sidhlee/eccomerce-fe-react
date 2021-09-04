@@ -20,11 +20,14 @@ type FormikFieldProps = {
 const FormikField: React.FC<FormikFieldProps> = ({
   showPassword,
   togglePassword,
-  type = 'email',
+  type = 'text',
   name,
 }) => {
+  const inputType =
+    type === 'password' ? (showPassword ? 'text' : 'password') : type;
+
   return (
-    <Field name="password">
+    <Field name={name}>
       {({
         field,
         form,
@@ -46,12 +49,7 @@ const FormikField: React.FC<FormikFieldProps> = ({
             }
           </FormLabel>
           <InputGroup>
-            <Input
-              {...field}
-              id={name}
-              placeholder={name}
-              type={showPassword ? 'text' : 'password'}
-            />
+            <Input {...field} id={name} placeholder={name} type={inputType} />
             {type === 'password' ? (
               <InputRightElement w="4.5rem">
                 <Button

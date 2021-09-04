@@ -9,31 +9,12 @@ import {
 } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Link,
-  Text,
-  useToast,
-} from '@chakra-ui/react';
-
-import {
-  Field,
-  FieldInputProps,
-  Form,
-  Formik,
-  FormikHelpers,
-  FormikProps,
-} from 'formik';
+import { Button, Link, Text, useToast } from '@chakra-ui/react';
+import { Form, Formik, FormikHelpers } from 'formik';
 
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import FormikField from '../../common/components/FormikField';
 YupPassword(Yup); // extend yup
 
 type AuthFormProps = {};
@@ -108,58 +89,13 @@ const AuthForm: React.FC<AuthFormProps> = () => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <Field name="email">
-            {({
-              field,
-              form,
-            }: {
-              field: FieldInputProps<string>;
-              form: FormikProps<Values>;
-            }) => (
-              <FormControl
-                isInvalid={!!form.errors.email && form.touched.email}
-              >
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input {...field} id="email" placeholder="email" />
-                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-              </FormControl>
-            )}
-          </Field>
-          <Field name="password">
-            {({
-              field,
-              form,
-            }: {
-              field: FieldInputProps<string>;
-              form: FormikProps<Values>;
-            }) => (
-              <FormControl
-                isInvalid={!!form.errors.password && form.touched.password}
-                mt="3"
-              >
-                <FormLabel htmlFor="password">Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    {...field}
-                    id="password"
-                    placeholder="password"
-                    type={showPassword ? 'text' : 'password'}
-                  />
-                  <InputRightElement w="4.5rem">
-                    <Button
-                      type="button"
-                      onClick={() => setShowPassword((v) => !v)}
-                      size="sm"
-                      h="1.75rem"
-                    >
-                      {showPassword ? 'Hide' : 'Show'}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-              </FormControl>
-            )}
-          </Field>
+          <FormikField type="email" name="email" />
+          <FormikField
+            type="password"
+            name="password"
+            showPassword={showPassword}
+            togglePassword={() => setShowPassword((v) => !v)}
+          />
           <Button my={4} type="submit" isLoading={isLoading} isFullWidth>
             Sign In
           </Button>
