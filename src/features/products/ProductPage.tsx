@@ -57,8 +57,8 @@ const ProductPage: React.FC<ProductPageProps> = () => {
 
   const imgSrc = currentVariant?.image_url;
   return (
-    <Container maxWidth="container.lg">
-      <Button as={ReactRouterLink} to="/">
+    <>
+      <Button as={ReactRouterLink} to="/" mt="2">
         Go back
       </Button>
       <SimpleGrid columns={[1, 2, 2, 2]}>
@@ -117,7 +117,7 @@ const ProductPage: React.FC<ProductPageProps> = () => {
           </>
         )}
       </SimpleGrid>
-    </Container>
+    </>
   );
 };
 
