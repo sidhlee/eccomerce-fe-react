@@ -1,14 +1,13 @@
-import { Link as ReactRouterLink } from 'react-router-dom';
-import { Link, Text } from '@chakra-ui/react';
-
 import { useSignupMutation } from '../../services/authService';
-import { setCredentials } from './authSlice';
+import { setCredentials } from '../auth/authSlice';
 import { useAppDispatch } from '../../app/hooks';
-import { useToast } from '@chakra-ui/react';
-import AuthForm from './AuthForm';
+import { useToast, Box } from '@chakra-ui/react';
+import AuthForm from '../auth/AuthForm';
 
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import { useEffect } from 'react';
+import { useUserProfileQuery } from '../../services/profileService';
 YupPassword(Yup); // extend yup
 
 type SignupFormProps = {};
@@ -73,21 +72,15 @@ const SignupForm: React.FC<SignupFormProps> = () => {
   });
 
   return (
-    <>
+    <Box m="auto" minW="300px" maxW="400px">
       <AuthForm
         handleSubmit={handleSubmit}
         isLoading={isLoading}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        type="Sign Up"
+        type="Update"
       />
-      <Text>
-        Already have an account?
-        <Link as={ReactRouterLink} to={'/login'} color="blue.400" ml="3">
-          Login
-        </Link>
-      </Text>
-    </>
+    </Box>
   );
 };
 

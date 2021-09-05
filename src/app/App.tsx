@@ -8,6 +8,7 @@ import CartPage from '../features/cart/CartPage';
 import LoginPage from '../features/auth/LoginPage';
 import Navbar from '../features/layout/Navbar';
 import SignupPage from '../features/auth/SignupPage';
+import AccountPage from '../features/account/AccountPage';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
               </Route>
               <Route path="/signup">
                 <SignupPage />
+              </Route>
+              <Route path="/account">
+                <AccountPage />
               </Route>
             </Container>
           </Box>

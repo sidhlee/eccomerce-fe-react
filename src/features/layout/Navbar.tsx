@@ -95,8 +95,8 @@ const Navbar: React.FC<NavbarProps> = () => {
                 {user.name}
               </MenuButton>
               <MenuList>
-                <MenuItem as={ReactRouterLink} to="/profile">
-                  Profile
+                <MenuItem as={ReactRouterLink} to="/account">
+                  Account
                 </MenuItem>
                 <MenuItem as="button" onClick={handleLogoutClick}>
                   Logout

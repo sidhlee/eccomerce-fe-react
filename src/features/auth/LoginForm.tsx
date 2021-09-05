@@ -1,3 +1,6 @@
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link, Text } from '@chakra-ui/react';
+
 import { useLoginMutation } from '../../services/authService';
 import { setCredentials } from './authSlice';
 import { useAppDispatch } from '../../app/hooks';
@@ -53,12 +56,21 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   });
 
   return (
-    <AuthForm
-      handleSubmit={handleSubmit}
-      isLoading={isLoading}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-    />
+    <>
+      <AuthForm
+        handleSubmit={handleSubmit}
+        isLoading={isLoading}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        type="Sign In"
+      />
+      <Text>
+        First time?
+        <Link as={ReactRouterLink} to={'/signup'} color="blue.400" ml="3">
+          Register
+        </Link>
+      </Text>
+    </>
   );
 };
 
