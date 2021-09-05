@@ -10,7 +10,13 @@ const ProfilePage: React.FC<ProfilePageProps> = () => {
         Your Account
       </Heading>
       <SimpleGrid columns={[1, 2, 2, 2]}>
-        <ProfileUpdateForm />
+        <Box minW="300px" maxW="400px">
+          <Heading size="lg">Profile</Heading>
+          <ProfileUpdateForm />
+        </Box>
+        <Box>
+          <Heading size="lg">Orders</Heading>
+        </Box>
       </SimpleGrid>
     </Box>
   );

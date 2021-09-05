@@ -16,7 +16,7 @@ export interface ProfileUpdateRequest {
 export const profileApi = createApi({
   reducerPath: 'profileApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api/profile/',
+    baseUrl: '/api/users/profile/',
     prepareHeaders: (headers, { getState }) => {
       // if we have a token in the store, use that.
       // RootState is directly typed from ReturnType of store.getState
@@ -34,6 +34,7 @@ export const profileApi = createApi({
       query: (id) => ({ url: `${id}` }),
     }),
     profileUpdate: build.mutation<User, ProfileUpdateRequest>({
+      // Backend extracts the current user from the access token
       query(body) {
         return {
           url: 'update/',

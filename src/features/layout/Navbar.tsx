@@ -91,6 +91,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 as={Button}
                 rightIcon={<ChevronDownIcon />}
                 variant="unstyled"
+                paddingLeft="3"
               >
                 {user.name}
               </MenuButton>

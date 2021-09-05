@@ -1,13 +1,17 @@
 import { useSignupMutation } from '../../services/authService';
 import { setCredentials } from '../auth/authSlice';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useToast, Box } from '@chakra-ui/react';
 import AuthForm from '../auth/AuthForm';
 
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { useEffect } from 'react';
-import { useUserProfileQuery } from '../../services/profileService';
+import {
+  useProfileUpdateMutation,
+  useUserProfileQuery,
+} from '../../services/profileService';
+import { useHistory } from 'react-router-dom';
 YupPassword(Yup); // extend yup
 
 type SignupFormProps = {};
@@ -19,18 +23,26 @@ interface SignupValues {
   confirmPassword: string;
 }
 
-const initialValues: SignupValues = {
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
-
 const SignupForm: React.FC<SignupFormProps> = () => {
-  const dispatch = useAppDispatch();
-  // TODO: find better way to use error
-  const [signup, { isLoading /* error */ }] = useSignupMutation();
+  const user = useAppSelector((state) => state.auth.user);
 
+  // Redirect user to login page when the user is logged out.
+  const history = useHistory();
+  useEffect(() => {
+    if (!user) {
+      history.push('/login');
+    }
+  }, [user, history]);
+
+  const initialValues: SignupValues = {
+    username: user?.username || '',
+    email: user?.email || '',
+    password: '',
+    confirmPassword: '',
+  };
+
+  const [updateProfile, { isLoading }] = useProfileUpdateMutation();
+  const dispatch = useAppDispatch();
   const toast = useToast();
 
   const handleSubmit = async (values: SignupValues) => {
@@ -42,13 +54,19 @@ const SignupForm: React.FC<SignupFormProps> = () => {
         password,
       };
       // get user from mutation function
-      const user = await signup(body).unwrap();
+      const user = await updateProfile(body).unwrap();
       // dispatch action with user payload
       dispatch(setCredentials(user));
+      toast({
+        status: 'success',
+        title: 'Profile',
+        description: 'Updated successfully.',
+        isClosable: true,
+      });
     } catch (err) {
       const errorMessage = err.data?.detail
         ? err.data.detail
-        : 'Could not login';
+        : 'Could not update profile.';
       toast({
         status: 'error',
         title: 'Error',
@@ -61,7 +79,8 @@ const SignupForm: React.FC<SignupFormProps> = () => {
   const validationSchema = Yup.object().shape({
     username: Yup.string().required(),
     email: Yup.string().email('Invalid email address').required(),
-    password: Yup.string().password().minUppercase(0).minSymbols(0).required(),
+    // password is only updated when there's a value, so not required.
+    password: Yup.string().password().minUppercase(0).minSymbols(0),
     confirmPassword: Yup.string().test(
       'passwords-match',
       'Passwords must match',
@@ -72,15 +91,13 @@ const SignupForm: React.FC<SignupFormProps> = () => {
   });
 
   return (
-    <Box m="auto" minW="300px" maxW="400px">
-      <AuthForm
-        handleSubmit={handleSubmit}
-        isLoading={isLoading}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        type="Update"
-      />
-    </Box>
+    <AuthForm
+      handleSubmit={handleSubmit}
+      isLoading={isLoading}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      type="Update"
+    />
   );
 };
 
