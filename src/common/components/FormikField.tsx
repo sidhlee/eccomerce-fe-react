@@ -1,31 +1,25 @@
 import { Field, FieldInputProps, FormikProps } from 'formik';
 
 import {
-  Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
   InputGroup,
-  InputRightElement,
 } from '@chakra-ui/react';
 
 type FormikFieldProps = {
-  type: 'text' | 'email' | 'password';
+  type?: 'text' | 'email' | 'password';
   name: string;
-  showPassword?: boolean;
-  togglePassword?: () => void;
+  placeholder: string;
 };
 
 const FormikField: React.FC<FormikFieldProps> = ({
-  showPassword,
-  togglePassword,
   type = 'text',
   name,
+  placeholder,
+  children,
 }) => {
-  const inputType =
-    type === 'password' ? (showPassword ? 'text' : 'password') : type;
-
   return (
     <Field name={name}>
       {({
@@ -34,38 +28,26 @@ const FormikField: React.FC<FormikFieldProps> = ({
       }: {
         field: FieldInputProps<string>;
         form: FormikProps<{ [name: string]: string }>;
-      }) => (
-        <FormControl
-          isInvalid={!!form.errors.password && form.touched.password}
-          mt="3"
-        >
-          <FormLabel htmlFor={name}>
-            {
-              // capitalize
-              name
-                .split(' ')
-                .map((word) => word[0].toUpperCase() + word.slice(1))
-                .join(' ')
-            }
-          </FormLabel>
-          <InputGroup>
-            <Input {...field} id={name} placeholder={name} type={inputType} />
-            {type === 'password' ? (
-              <InputRightElement w="4.5rem">
-                <Button
-                  type="button"
-                  onClick={togglePassword}
-                  size="sm"
-                  h="1.75rem"
-                >
-                  {showPassword ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            ) : null}
-          </InputGroup>
-          <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-        </FormControl>
-      )}
+      }) => {
+        return (
+          <FormControl
+            isInvalid={!!form.errors[name] && form.touched[name]}
+            mt="3"
+          >
+            <FormLabel htmlFor={name}>{placeholder}</FormLabel>
+            <InputGroup>
+              <Input
+                {...field}
+                id={name}
+                placeholder={placeholder}
+                type={type}
+              />
+              {children}
+            </InputGroup>
+            <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
+          </FormControl>
+        );
+      }}
     </Field>
   );
 };
