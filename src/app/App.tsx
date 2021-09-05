@@ -9,6 +9,7 @@ import LoginPage from '../features/auth/LoginPage';
 import Navbar from '../features/layout/Navbar';
 import SignupPage from '../features/auth/SignupPage';
 import AccountPage from '../features/account/AccountPage';
+import ShippingPage from '../features/cart/ShippingPage';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
               </Route>
               <Route path="/account">
                 <AccountPage />
+              </Route>
+              <Route path="/shipping">
+                <ShippingPage />
               </Route>
             </Container>
           </Box>
