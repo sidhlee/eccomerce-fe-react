@@ -9,7 +9,7 @@ import LoginPage from '../features/auth/LoginPage';
 import Navbar from '../features/layout/Navbar';
 import SignupPage from '../features/auth/SignupPage';
 import AccountPage from '../features/account/AccountPage';
-import ShippingPage from '../features/cart/ShippingPage';
+import ShippingPage from '../features/checkout/ShippingPage';
 
 function App() {
   return (
